@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>111103028_HW6_1A2B</title>
+</head>
+<body>
+
+	<h1>111103028_HW6_1A2B</h1>
+
+	<input type="text" name="guessNum" placeholder="請輸入4個不重複的數字">
+	<button onclick="myFunction()" name="button">猜</button>
+	<ul id="result"> <h2>遊戲紀錄:</h2></ul>
+
+	<script type="text/javascript">
+		let ansArray = [];
+		var num;
+		while (ansArray.length<4){
+			num = Math.floor(Math.random()*10);
+			if(!ansArray.includes(num)){
+				ansArray.push(num);
+			}
+
+		}
+
+		/*alert(ansArray);*/
+
+		let times = 0;
+
+		var result;
+		result = document.getElementById("result");
+
+		function myFunction(){
+			let player = document.querySelector('input[name = "guessNum"]');
+			const playerArray= player.value.split("");
+			const playNum = player.value;
+
+			let uniqueNum = new Set(playerArray);
+
+			if(playerArray.length!== 4){
+				alert("是否為 4 個數字");
+				return;
+			}
+
+			if(uniqueNum.size !== playerArray.length){
+				alert("是否有重複數字");
+				return;
+			}
+			
+
+			let A=0;
+			let B=0;
+
+			for (let i=0; i<4; i++){
+				if(ansArray[i]===parseInt(playerArray[i])){
+					A++;
+				} 
+				if(ansArray.includes(parseInt(playerArray[i]))){
+					B++;
+				}
+			}
+
+			times++;
+
+						
+			result.innerHTML+="第"+times+"次:"+playNum+"→"+A+"A"+B+"B<br>";
+
+			if(A==4&&B==4){
+				alert("恭喜答對\n共作答"+times+"次");
+			}
+
+			player.value = "" ;
+
+
+		}
+
+		let record = document.querySelector('button[name = "button"]');
+
+		
+			result.innerHTML= "<h2>遊戲紀錄:</h2>"
+			
+		
+
+
+
+	</script>
+
+
+</body>
+</html>
